@@ -9,5 +9,5 @@ import android.view.View;
  */
 
 public interface MyListener {
-    void onClick(@NonNull View itemView, @NonNull DemoItem demoItem);
+    void onClick(@NonNull View itemView, @NonNull int position);
 }

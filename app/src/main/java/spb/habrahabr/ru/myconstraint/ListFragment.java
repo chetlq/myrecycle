@@ -34,16 +34,12 @@ public class ListFragment extends Fragment {
         return view;
     }
 
-    private class myAdapter extends DemoAdapter implements MyListener{
+    private class myAdapter extends DemoAdapter {
 
         public myAdapter(@NonNull List<DemoItem> items, @NonNull MyListener listener) {
             super( items, listener );
         }
 
-        @Override
-        public void onClick(@NonNull View itemView, @NonNull int position) {
-
-        }
     }
 
     @NonNull

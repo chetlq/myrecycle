@@ -8,7 +8,7 @@ import android.view.View;
 /**
  * Created by admin on 15.04.2018.
  */
-
+//
 public class DemoHolder extends RecyclerView.ViewHolder {
 
 
@@ -18,6 +18,6 @@ public class DemoHolder extends RecyclerView.ViewHolder {
 
     @CallSuper
     public void bind(@NonNull DemoItem demoItem) {
-        itemView.setTag(R.id.view_layout, demoItem);
+        //itemView.setTag(R.id.my_recycler_view, demoItem);
     }
 }

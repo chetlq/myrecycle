@@ -17,7 +17,7 @@ import java.util.List;
  * Created by admin on 14.04.2018.
  */
 
-public class ListFragment extends Fragment implements MyListener, DemoAdapter.OnItemClickListener {
+public class ListFragment extends Fragment implements DemoAdapter.OnItemClickListener {
     private RecyclerView mRecyclerView;
     private DemoAdapter mdemoAdapter;
 
@@ -33,7 +33,7 @@ public class ListFragment extends Fragment implements MyListener, DemoAdapter.On
                 (getActivity()));
         ItemLab itemLab = ItemLab.get(getActivity());
         List<DemoItem> DemoItems = itemLab.getItems();
-        mdemoAdapter = new DemoAdapter(DemoItems, this,this );
+        mdemoAdapter = new DemoAdapter(DemoItems, this );
         mRecyclerView.setAdapter( mdemoAdapter );
         return view;
     }
@@ -45,10 +45,6 @@ public class ListFragment extends Fragment implements MyListener, DemoAdapter.On
                 Toast.LENGTH_LONG).show();
     }
 
-    @Override
-    public void onClick(@NonNull View itemView, @NonNull DemoItem demoItem) {
-        Toast.makeText(getActivity(), "This is my Toast message2!",
-                Toast.LENGTH_LONG).show();
-    }
+
 }
 

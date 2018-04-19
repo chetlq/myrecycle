@@ -9,15 +9,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by admin on 14.04.2018.
  */
 
-public class ListFragment extends Fragment  {
+public class ListFragment extends Fragment implements MyListener, DemoAdapter.OnItemClickListener {
     private RecyclerView mRecyclerView;
     private DemoAdapter mdemoAdapter;
 
@@ -33,15 +33,22 @@ public class ListFragment extends Fragment  {
                 (getActivity()));
         ItemLab itemLab = ItemLab.get(getActivity());
         List<DemoItem> DemoItems = itemLab.getItems();
-        mdemoAdapter = new DemoAdapter(DemoItems);
+        mdemoAdapter = new DemoAdapter(DemoItems, this,this );
         mRecyclerView.setAdapter( mdemoAdapter );
         return view;
     }
 
 
+    @Override
+    public void onItemClick(@NonNull DemoItem demoItem, int position) {
+        Toast.makeText(getActivity(), "This is my Toast message1!",
+                Toast.LENGTH_LONG).show();
+    }
 
-
-
-
+    @Override
+    public void onClick(@NonNull View itemView, @NonNull DemoItem demoItem) {
+        Toast.makeText(getActivity(), "This is my Toast message2!",
+                Toast.LENGTH_LONG).show();
+    }
 }
 

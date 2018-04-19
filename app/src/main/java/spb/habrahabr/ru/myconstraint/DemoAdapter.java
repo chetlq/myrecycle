@@ -23,7 +23,7 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.MyHolder>{
     private  MyListener listener;
 
     @NonNull
-    private  OnItemClickListener onItemClickListener;
+    private final OnItemClickListener onItemClickListener;
 
 
 
@@ -41,8 +41,9 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.MyHolder>{
         }
     };
 
-    public DemoAdapter(@NonNull List<DemoItem> items) {
+    public DemoAdapter(@NonNull List<DemoItem> items, ListFragment itemClickListener, @NonNull OnItemClickListener onItemClickListener) {
         this.items = new ArrayList<>(items);
+        this.onItemClickListener = onItemClickListener;
     }
 
     @Override

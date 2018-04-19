@@ -20,11 +20,29 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.MyHolder>{
 
 
     @NonNull
-    private final MyListener listener;
+    private  MyListener listener;
 
-    public DemoAdapter(@NonNull List<DemoItem> items, @NonNull MyListener listener) {
+    @NonNull
+    private  OnItemClickListener onItemClickListener;
+
+
+
+    @NonNull
+    private final View.OnClickListener internalClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(@NonNull View view) {
+            DemoItem demoItem = (DemoItem) view.getTag(R.id.demo_item_key);
+            if (demoItem != null) {
+                int position = items.indexOf(demoItem);
+                onItemClickListener.onItemClick(demoItem, position);
+
+            }
+
+        }
+    };
+
+    public DemoAdapter(@NonNull List<DemoItem> items) {
         this.items = new ArrayList<>(items);
-        this.listener = listener;
     }
 
     @Override
@@ -59,9 +77,7 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.MyHolder>{
             timeTextView = itemView.findViewById( R.id.time_text );
         }
 
-        @Override
         public void bind(@NonNull DemoItem demoItem) {
-            super.bind( demoItem );
             itemView.setOnClickListener( internalClickListener );
             labelTextView.setText(demoItem.getLabel());
             if (demoItem.getTimeLabel() != null) {
@@ -72,18 +88,11 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.MyHolder>{
             }
         }
 
-        @NonNull
-        private final View.OnClickListener internalClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(@NonNull View view) {
-                if (listener != null) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        listener.onClick(itemView, position);
-                    }
-                }
 
-            }
-        };
     }
+
+    interface OnItemClickListener {
+        void onItemClick(@NonNull DemoItem demoItem, int position);
+    }
+
 }

@@ -17,9 +17,9 @@ import java.util.List;
  * Created by admin on 14.04.2018.
  */
 
-public class ListFragment extends Fragment {
-    private RecyclerView mCrimeRecyclerView;
-    private DemoAdapter demoAdapter;
+public class ListFragment extends Fragment  {
+    private RecyclerView mRecyclerView;
+    private DemoAdapter mdemoAdapter;
 
 
     @Override
@@ -27,20 +27,18 @@ public class ListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recycler_layout, container,
                 false);
-        mCrimeRecyclerView = (RecyclerView) view
+        mRecyclerView = (RecyclerView) view
                 .findViewById(R.id.my_recycler_view);
-        mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager
+        mRecyclerView.setLayoutManager(new LinearLayoutManager
                 (getActivity()));
+        ItemLab itemLab = ItemLab.get(getActivity());
+        List<DemoItem> DemoItems = itemLab.getItems();
+        mdemoAdapter = new DemoAdapter(DemoItems);
+        mRecyclerView.setAdapter( mdemoAdapter );
         return view;
     }
 
-    private class myAdapter extends DemoAdapter {
 
-        public myAdapter(@NonNull List<DemoItem> items, @NonNull MyListener listener) {
-            super( items, listener );
-        }
-
-    }
 
     @NonNull
     private List<DemoItem> createDemoItems() {
@@ -59,10 +57,14 @@ public class ListFragment extends Fragment {
             } else if (i == 14) {
                 demoItems.add(new DemoItem(String.valueOf(i + 1), "Oct. 16"));
             } else {
-                demoItems.add(new DemoItem(String.valueOf(i + 1)));
+                demoItems.add(new DemoItem(String.valueOf(i + 1), "------"));
             }
         }
         return demoItems;
     }
+
+
+
+
 }
 

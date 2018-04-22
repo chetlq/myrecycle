@@ -41,9 +41,10 @@ public class ListFragment extends Fragment implements DemoAdapter.OnItemClickLis
 
     @Override
     public void onItemClick(@NonNull DemoItem demoItem, int position) {
-        Toast.makeText(getActivity(), "This is my Toast message1!",
-                Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "This is my Toast message"+position,
+                Toast.LENGTH_SHORT).show();
     }
+
 
 
 }

@@ -20,9 +20,6 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.MyHolder>{
 
 
     @NonNull
-    private  MyListener listener;
-
-    @NonNull
     private final OnItemClickListener onItemClickListener;
 
 
@@ -46,11 +43,12 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.MyHolder>{
         this.onItemClickListener = onItemClickListener;
     }
 
+
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.fragment_layout, parent, false);
-        return (MyHolder) new MyHolder(itemView, listener);
+        return (MyHolder) new MyHolder(itemView);
     }
 
     @Override
@@ -70,15 +68,18 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.MyHolder>{
     }
 
     public class MyHolder extends DemoHolder {
-        private TextView labelTextView;
-        private TextView timeTextView;
-        public MyHolder(View itemView, @NonNull MyListener onMyListener) {
-            super( itemView, onMyListener );
+        @NonNull
+        private final TextView labelTextView;
+        @NonNull
+        private final TextView timeTextView;
+        MyHolder(@NonNull View itemView) {
+            super( itemView );
             labelTextView = itemView.findViewById( R.id.item_label );
             timeTextView = itemView.findViewById( R.id.time_text );
         }
 
         public void bind(@NonNull DemoItem demoItem) {
+            super.bind( demoItem );
             itemView.setOnClickListener( internalClickListener );
             labelTextView.setText(demoItem.getLabel());
             if (demoItem.getTimeLabel() != null) {

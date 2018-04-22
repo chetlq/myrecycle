@@ -11,7 +11,7 @@ import android.widget.TextView;
  */
 //
 public class DemoHolder extends RecyclerView.ViewHolder {
-    public DemoHolder(@NonNull  View itemView, @NonNull MyListener onMyListener) {
+    public DemoHolder(@NonNull  View itemView) {
         super( itemView );
     }
 

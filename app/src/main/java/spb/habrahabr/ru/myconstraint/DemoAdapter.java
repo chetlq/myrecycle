@@ -67,7 +67,7 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.MyHolder>{
         return items;
     }
 
-    public class MyHolder extends DemoHolder {
+    public class MyHolder extends RecyclerView.ViewHolder {
         @NonNull
         private final TextView labelTextView;
         @NonNull
@@ -79,7 +79,7 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.MyHolder>{
         }
 
         public void bind(@NonNull DemoItem demoItem) {
-            super.bind( demoItem );
+            itemView.setTag(R.id.demo_item_key, demoItem);
             itemView.setOnClickListener( internalClickListener );
             labelTextView.setText(demoItem.getLabel());
             if (demoItem.getTimeLabel() != null) {
